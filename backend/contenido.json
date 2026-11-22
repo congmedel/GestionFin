@@ -1,0 +1,410 @@
+{
+  "asignatura": {
+    "codigo": "ISI604",
+    "nombre": "Gestión de Riesgos",
+    "horas": 54,
+    "competencia": "Aplicar proceso de gestión de riesgos (identificación, documentación y seguimiento), considerando las vulnerabilidades de proyectos informáticos.",
+    "aprendizajes": [
+      {"id": "AE1", "texto": "Aplican técnicas de identificación de riesgos en proyectos informáticos, de acuerdo con normas ISO."},
+      {"id": "AE2", "texto": "Realizan documentación asociada a la gestión de riesgos de proyectos informáticos, considerando plan, registro de monitoreo y de revisiones."},
+      {"id": "AE3", "texto": "Aplican métodos de seguimiento de riesgos asociados a proyecto informático, considerando documentación e impacto."}
+    ]
+  },
+
+  "unidades": [
+    {
+      "id": "U1",
+      "nombre": "Unidad 1: Proceso de gestión de riesgos",
+      "aprendizajes": ["AE1"],
+      "contenidos": [
+        {
+          "id": "U1C1",
+          "titulo": "Norma UNE-ISO/ISO 27001",
+          "resumen": "La ISO/IEC 27001 es la norma internacional que fija los requisitos para establecer, implementar, mantener y mejorar un Sistema de Gestión de Seguridad de la Información (SGSI). Su núcleo es la gestión de riesgos: la organización identifica qué puede afectar la confidencialidad, integridad y disponibilidad de su información y decide cómo tratarlo. La versión vigente es la ISO/IEC 27001:2022 (en España, UNE-EN ISO/IEC 27001:2023), con la enmienda 1:2024 que incorpora el cambio climático en el análisis de contexto.",
+          "conceptos": [
+            {"termino": "SGSI", "definicion": "Conjunto de políticas, procesos, roles y controles con que una organización gestiona la seguridad de su información de forma sistemática."},
+            {"termino": "Cláusulas 4 a 10", "definicion": "Requisitos obligatorios del sistema de gestión: contexto, liderazgo, planificación, apoyo, operación, evaluación del desempeño y mejora. No se pueden excluir."},
+            {"termino": "Anexo A", "definicion": "Lista de referencia de 93 controles agrupados en 4 temas: organizacionales (37), de personas (8), físicos (14) y tecnológicos (34). Se seleccionan según el resultado de la evaluación de riesgos."},
+            {"termino": "Declaración de Aplicabilidad (SoA)", "definicion": "Documento que indica, para cada control del Anexo A, si se aplica o no, por qué, y su estado de implementación (cláusula 6.1.3 d)."},
+            {"termino": "Ciclo PDCA", "definicion": "Planificar (cláusulas 4 a 7), Hacer (8), Verificar (9) y Actuar (10). Es la lógica de mejora continua del SGSI."},
+            {"termino": "Familia ISO 27000", "definicion": "ISO 27002 es la guía de implementación de los controles; ISO 27005 detalla la gestión de riesgos de seguridad de la información; ISO 31000 da el marco general de gestión de riesgos para cualquier organización."}
+          ],
+          "en_proyectos": "En un proyecto informático la norma no se certifica, pero se usa como marco de trabajo: el proyecto identifica sus riesgos con la metodología de la cláusula 6.1.2, selecciona controles del Anexo A y deja evidencia documentada. El control 5.8 exige integrar la seguridad de la información en la gestión de proyectos, sin importar el tipo de proyecto.",
+          "ejemplo": "Un equipo desarrolla un portal de matrícula en línea. Al aplicar la cláusula 6.1.2 detecta que los datos personales de los postulantes podrían filtrarse por una API mal protegida. Lo registra en la matriz, lo evalúa como riesgo alto y selecciona los controles 8.26 (requisitos de seguridad de las aplicaciones), 8.28 (codificación segura) y 5.34 (protección de datos personales).",
+          "clausulas": ["4.1", "6.1.2", "6.1.3", "8.2", "8.3"],
+          "controles": ["5.8", "5.1"],
+          "preguntas": [
+            "¿Por qué las cláusulas 4 a 10 no se pueden excluir y los controles del Anexo A sí?",
+            "¿Qué diferencia hay entre la ISO 27001 y la ISO 27002?",
+            "¿Qué documento demuestra qué controles del Anexo A aplica un proyecto y cuáles excluye?"
+          ]
+        },
+        {
+          "id": "U1C2",
+          "titulo": "Equipo de gestión de riesgo",
+          "resumen": "La gestión de riesgos requiere roles definidos y con autoridad. La norma exige que la alta dirección asigne responsabilidades (cláusula 5.3) y que cada riesgo tenga un dueño con autoridad para gestionarlo (cláusula 6.1.2 c 2). En un proyecto, el equipo de riesgo se forma desde la planificación y se documenta con una matriz RACI.",
+          "conceptos": [
+            {"termino": "Patrocinador o alta dirección", "definicion": "Aprueba el plan de gestión de riesgos, define el apetito de riesgo y asigna recursos."},
+            {"termino": "Jefe de proyecto", "definicion": "Integra la gestión de riesgos en la planificación, controla la línea base y escala los riesgos que superan su tolerancia."},
+            {"termino": "Coordinador de riesgos", "definicion": "Mantiene el registro, facilita los talleres de identificación, prepara informes y controla las fechas de revisión."},
+            {"termino": "Dueño del riesgo", "definicion": "Persona con responsabilidad y autoridad para gestionar un riesgo concreto. Aprueba el plan de tratamiento y acepta el riesgo residual (6.1.3 f)."},
+            {"termino": "Responsable del control", "definicion": "Implementa y opera el control seleccionado. Puede ser distinto del dueño del riesgo."},
+            {"termino": "Matriz RACI", "definicion": "Tabla que indica quién es Responsable, quién Aprueba (Accountable), a quién se Consulta y a quién se Informa en cada actividad."}
+          ],
+          "en_proyectos": "Cada riesgo de la matriz debe tener un dueño con nombre y cargo, no un área genérica. Si el dueño no tiene autoridad sobre el presupuesto o la decisión técnica, el riesgo queda sin gestión real. La segregación de funciones (control 5.3) evita que quien implementa un control sea el mismo que lo audita.",
+          "ejemplo": "En el portal de matrícula, el riesgo de caída del servidor en el periodo de postulación tiene como dueño al jefe de infraestructura (decide sobre capacidad y redundancia), mientras que el responsable del control 8.6 (gestión de la capacidad) es el administrador de sistemas.",
+          "clausulas": ["5.1", "5.3", "6.1.2", "6.1.3"],
+          "controles": ["5.2", "5.3", "5.4", "5.8"],
+          "preguntas": [
+            "¿Por qué el dueño del riesgo debe tener autoridad y no solo conocimiento técnico?",
+            "¿Qué problema de control aparece si el desarrollador aprueba sus propios cambios en producción?",
+            "Construya una RACI para las actividades identificar, analizar, tratar y revisar riesgos."
+          ]
+        },
+        {
+          "id": "U1C3",
+          "titulo": "Identificación de situaciones de incertidumbre",
+          "resumen": "ISO 31000 define el riesgo como el efecto de la incertidumbre sobre los objetivos. La incertidumbre es falta de información, de comprensión o de conocimiento sobre un evento, sus consecuencias o su probabilidad. Identificarla obliga a revisar los supuestos del proyecto y convertirlos en riesgos redactados de forma precisa.",
+          "conceptos": [
+            {"termino": "Supuesto", "definicion": "Algo que el proyecto da por cierto sin haberlo comprobado. Todo supuesto no validado es una fuente de incertidumbre."},
+            {"termino": "Incertidumbre de estimación", "definicion": "Plazos, costos o esfuerzo calculados con poca información histórica."},
+            {"termino": "Incertidumbre técnica", "definicion": "Tecnología nueva para el equipo, integraciones no probadas, rendimiento desconocido."},
+            {"termino": "Incertidumbre de requisitos", "definicion": "Requisitos ambiguos, cambiantes o con usuarios que no tienen claro lo que necesitan."},
+            {"termino": "Incertidumbre externa", "definicion": "Dependencia de proveedores, cambios normativos, mercado o disponibilidad de servicios en la nube."},
+            {"termino": "Metalenguaje del riesgo", "definicion": "Redacción en tres partes: Debido a [causa], podría ocurrir [evento incierto], lo que provocaría [efecto sobre el objetivo]."}
+          ],
+          "tecnicas": ["Tormenta de ideas estructurada", "Técnica Delphi (expertos anónimos)", "Entrevistas a interesados", "Análisis de supuestos y restricciones", "Listas de verificación basadas en proyectos anteriores", "Análisis FODA", "Revisión de lecciones aprendidas", "Diagramas causa efecto (Ishikawa)"],
+          "en_proyectos": "Revise el acta de constitución, la EDT y el cronograma buscando frases como 'se asume', 'debería', 'el proveedor confirmará'. Cada una se transforma en una situación de incertidumbre que se registra en el campo correspondiente de la matriz.",
+          "ejemplo": "Supuesto: 'el servicio de autenticación institucional soportará 5.000 usuarios simultáneos'. Riesgo redactado: Debido a que no existen pruebas de carga del servicio de autenticación, podría ocurrir una saturación durante el periodo de matrícula, lo que provocaría la indisponibilidad del portal y reclamos de postulantes.",
+          "clausulas": ["4.1", "4.2", "6.1.1", "6.1.2"],
+          "controles": ["5.8", "5.7", "8.6"],
+          "preguntas": [
+            "¿Cuál es la diferencia entre un problema (issue) y un riesgo?",
+            "Redacte tres riesgos de su proyecto usando el metalenguaje causa, evento y efecto.",
+            "¿Por qué un riesgo puede ser positivo (oportunidad) según ISO 31000?"
+          ]
+        },
+        {
+          "id": "U1C4",
+          "titulo": "Identificación de factores de riesgo",
+          "resumen": "Un factor de riesgo es un elemento que aumenta la probabilidad o el impacto de un evento no deseado. En seguridad de la información, ISO 27005 propone dos enfoques: basado en activos (activo, amenaza, vulnerabilidad, consecuencia) y basado en escenarios o eventos. Ambos son válidos para cumplir la cláusula 6.1.2.",
+          "conceptos": [
+            {"termino": "Activo", "definicion": "Todo lo que tiene valor para el proyecto: información, software, servidores, personas, servicios, reputación."},
+            {"termino": "Amenaza", "definicion": "Causa potencial de un incidente: atacante, error humano, falla de hardware, incendio, proveedor que quiebra."},
+            {"termino": "Vulnerabilidad", "definicion": "Debilidad de un activo o de un control que una amenaza puede aprovechar: contraseñas débiles, software sin parches, falta de respaldo."},
+            {"termino": "Consecuencia", "definicion": "Resultado del evento sobre los objetivos. En la ISO 27001 se expresa como pérdida de confidencialidad, integridad o disponibilidad (CID)."},
+            {"termino": "Control existente", "definicion": "Medida que ya opera y reduce el riesgo. Se registra antes de evaluar para no sobrestimar el nivel inherente."},
+            {"termino": "RBS (estructura de desglose de riesgos)", "definicion": "Clasificación jerárquica de categorías de riesgo: técnicos, de gestión, organizacionales, externos, de personas, legales y físicos."}
+          ],
+          "en_proyectos": "Para cada activo crítico del proyecto se pregunta: ¿qué amenazas lo afectan?, ¿qué vulnerabilidad tiene hoy?, ¿qué se pierde (C, I o D)? La combinación activo, amenaza y vulnerabilidad es la fila de la matriz.",
+          "ejemplo": "Activo: base de datos de postulantes. Amenaza: atacante externo. Vulnerabilidad: consultas SQL construidas por concatenación. Consecuencia: pérdida de confidencialidad e integridad de datos personales. Categoría: técnico.",
+          "clausulas": ["6.1.2", "8.2"],
+          "controles": ["5.9", "5.12", "8.8", "8.28"],
+          "preguntas": [
+            "¿Por qué una amenaza sin vulnerabilidad no genera riesgo?",
+            "Identifique tres activos de información de su proyecto y su propietario.",
+            "¿Qué ventaja tiene clasificar los riesgos con una RBS?"
+          ]
+        },
+        {
+          "id": "U1C5",
+          "titulo": "Identificación de desviaciones del proyecto",
+          "resumen": "Una desviación es la diferencia entre lo planificado (línea base) y lo real. Las desviaciones son señales de que un riesgo se está materializando o de que aparecieron riesgos nuevos. Se detectan con indicadores y umbrales de tolerancia definidos en el plan, y en seguridad se tratan como no conformidades (cláusula 10.2).",
+          "conceptos": [
+            {"termino": "Línea base", "definicion": "Versión aprobada del alcance, cronograma y presupuesto contra la que se mide el avance."},
+            {"termino": "Variación del cronograma (SV) e índice SPI", "definicion": "SV = EV - PV; SPI = EV / PV. Un SPI menor a 1 indica atraso."},
+            {"termino": "Variación del costo (CV) e índice CPI", "definicion": "CV = EV - AC; CPI = EV / AC. Un CPI menor a 1 indica sobrecosto."},
+            {"termino": "Umbral de tolerancia", "definicion": "Límite de desviación aceptado antes de escalar. Ejemplo: más de 10% de atraso en un hito se informa al patrocinador."},
+            {"termino": "Disparador (trigger) o KRI", "definicion": "Indicador de alerta temprana que anticipa la materialización de un riesgo, como el número de defectos críticos abiertos."},
+            {"termino": "No conformidad", "definicion": "Incumplimiento de un requisito. Exige reaccionar, analizar la causa y tomar acciones correctivas (10.2)."}
+          ],
+          "en_proyectos": "En cada revisión del registro de riesgos se anota si hubo desviación de plazo, costo, alcance, calidad o seguridad. Una desviación repetida en el mismo riesgo indica que el tratamiento no está funcionando y que hay que reevaluar.",
+          "ejemplo": "En la semana 6 el SPI del portal es 0,82 porque la integración con el sistema académico tomó más de lo previsto. Se registra como desviación de plazo en el riesgo 'retraso en integración con sistema legado' y se sube su probabilidad de 3 a 4.",
+          "clausulas": ["9.1", "10.2", "6.3"],
+          "controles": ["5.8", "8.32", "5.27"],
+          "preguntas": [
+            "Con EV = 40, PV = 50 y AC = 45, calcule SV, CV, SPI y CPI e interprete.",
+            "¿Cuándo una desviación debe registrarse como riesgo nuevo y cuándo como materialización de uno existente?",
+            "Defina dos KRI para un proyecto de desarrollo web."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "U2",
+      "nombre": "Unidad 2: Documentación y seguimiento de riesgos",
+      "aprendizajes": ["AE2", "AE3"],
+      "contenidos": [
+        {
+          "id": "U2C1",
+          "titulo": "Plan de gestión de riesgos",
+          "resumen": "Documento que define cómo se gestionarán los riesgos durante todo el proyecto. Es el equivalente, a escala de proyecto, de la metodología que exige la cláusula 6.1.2 de la ISO 27001: criterios de aceptación, criterios para evaluar y un proceso que produzca resultados coherentes y comparables.",
+          "conceptos": [
+            {"termino": "Metodología", "definicion": "Normas y herramientas que se usarán: ISO 31000, ISO 27005, matriz 5x5."},
+            {"termino": "Escalas de probabilidad e impacto", "definicion": "Definiciones medibles de cada nivel (1 a 5) para que dos evaluadores lleguen al mismo resultado."},
+            {"termino": "Criterio de aceptación (apetito)", "definicion": "Nivel máximo de riesgo que la dirección acepta sin tratamiento. Exigido por 6.1.2 a 1."},
+            {"termino": "Roles y responsabilidades", "definicion": "Quién identifica, quién evalúa, quién aprueba y quién revisa."},
+            {"termino": "Calendario y presupuesto", "definicion": "Frecuencia de revisiones y reserva de contingencia para tratar riesgos."},
+            {"termino": "Formatos e informes", "definicion": "Plantilla de registro, informe de riesgos, mapa de calor y declaración de aplicabilidad."}
+          ],
+          "en_proyectos": "El plan se aprueba antes de iniciar la identificación. En esta aplicación, el apetito de riesgo configurado en cada proyecto representa el criterio de aceptación del plan.",
+          "ejemplo": "El plan del portal de matrícula fija: escala 5x5, apetito en nivel 9, revisión quincenal del registro, revisión extraordinaria ante cualquier incidente o cambio de alcance, y aprobación del riesgo residual por el dueño del riesgo.",
+          "clausulas": ["6.1.1", "6.1.2", "7.5", "8.1"],
+          "controles": ["5.8", "5.1", "5.37"],
+          "preguntas": [
+            "¿Por qué las escalas deben describirse con criterios medibles?",
+            "¿Qué ocurre si el apetito de riesgo no está definido antes de evaluar?",
+            "Liste las secciones mínimas de un plan de gestión de riesgos."
+          ]
+        },
+        {
+          "id": "U2C2",
+          "titulo": "Registro de riesgos (matriz)",
+          "resumen": "Documento vivo donde se anota cada riesgo identificado con su análisis, evaluación, tratamiento, dueño y estado. Es la evidencia principal de las cláusulas 8.2 (resultado de la evaluación) y 8.3 (resultado del tratamiento).",
+          "conceptos": [
+            {"termino": "Nivel inherente", "definicion": "Probabilidad por impacto considerando solo los controles existentes."},
+            {"termino": "Opciones de tratamiento", "definicion": "Mitigar (reducir), transferir (compartir), evitar o aceptar (retener)."},
+            {"termino": "Plan de tratamiento", "definicion": "Acciones, responsables, plazos y controles del Anexo A seleccionados (6.1.3 e)."},
+            {"termino": "Nivel residual", "definicion": "Nivel esperado después de aplicar el tratamiento. Debe ser aceptado por el dueño del riesgo (6.1.3 f)."},
+            {"termino": "Estado del riesgo", "definicion": "Abierto, en tratamiento, monitoreo, materializado o cerrado."}
+          ],
+          "en_proyectos": "La matriz de esta aplicación sigue esa estructura y alimenta automáticamente la declaración de aplicabilidad y la conciliación con la norma.",
+          "ejemplo": "R-03: Debido a consultas SQL concatenadas, podría ocurrir una inyección SQL, lo que provocaría fuga de datos personales. P=4, I=5, nivel 20 (crítico). Tratamiento: mitigar con 8.28 y 8.29. Residual P=2, I=5, nivel 10. Aprobado por el jefe de desarrollo.",
+          "clausulas": ["6.1.2", "6.1.3", "8.2", "8.3", "7.5"],
+          "controles": ["5.8", "5.37"],
+          "preguntas": [
+            "¿Qué columna de la matriz demuestra el cumplimiento de 6.1.2 c 2?",
+            "¿Por qué la opción 'aceptar' también es un tratamiento?",
+            "¿Qué relación hay entre la matriz y la declaración de aplicabilidad?"
+          ]
+        },
+        {
+          "id": "U2C3",
+          "titulo": "Registro de monitoreo y revisiones",
+          "resumen": "La cláusula 8.2 exige repetir la evaluación de riesgos a intervalos planificados o cuando haya cambios significativos, y la 9.1 exige medir y dar seguimiento. El registro de revisiones guarda la historia de cada riesgo: fecha, nuevo nivel, estado, desviaciones y decisiones.",
+          "conceptos": [
+            {"termino": "Revisión periódica", "definicion": "Reevaluación programada según el plan (semanal, quincenal, por hito)."},
+            {"termino": "Revisión extraordinaria", "definicion": "Se gatilla por incidentes, cambios de alcance, nuevas vulnerabilidades o cambios normativos."},
+            {"termino": "Trazabilidad", "definicion": "Cada cambio en el nivel del riesgo queda asociado a una fecha, un revisor y un motivo."},
+            {"termino": "Revisión por la dirección", "definicion": "La alta dirección revisa los resultados de la evaluación y el estado del plan de tratamiento (9.3)."}
+          ],
+          "en_proyectos": "En la pestaña Seguimiento cada revisión actualiza el nivel actual del riesgo y deja evidencia. La conciliación alerta cuando un riesgo tiene la fecha de revisión vencida.",
+          "ejemplo": "Revisión del 12-11: R-05 baja de P=4 a P=2 tras implementar respaldo diario (8.13) y probar la restauración. Sin desviaciones. Próxima revisión 26-11.",
+          "clausulas": ["8.2", "9.1", "9.3", "7.5"],
+          "controles": ["5.35", "5.36"],
+          "preguntas": [
+            "¿Qué eventos deberían gatillar una revisión extraordinaria en su proyecto?",
+            "¿Qué datos mínimos debe tener una entrada del registro de revisiones?",
+            "¿Por qué no basta con sobrescribir el nivel del riesgo en la matriz?"
+          ]
+        },
+        {
+          "id": "U2C4",
+          "titulo": "Métodos de seguimiento de riesgos",
+          "resumen": "Seguir un riesgo es verificar que el tratamiento se ejecuta, que funciona y que no aparecen riesgos nuevos. Se combinan métodos cualitativos y cuantitativos.",
+          "conceptos": [
+            {"termino": "Reevaluación de riesgos", "definicion": "Nueva estimación de probabilidad e impacto con la información actual."},
+            {"termino": "Auditoría de riesgos", "definicion": "Revisión independiente de la eficacia de los tratamientos y del proceso (9.2)."},
+            {"termino": "Análisis de tendencias", "definicion": "Comparar el nivel del riesgo en el tiempo para ver si mejora o empeora."},
+            {"termino": "Análisis de reservas", "definicion": "Comparar la reserva de contingencia restante con el riesgo pendiente."},
+            {"termino": "Indicadores clave de riesgo (KRI)", "definicion": "Métricas con umbral que anticipan la materialización."},
+            {"termino": "Mapa de calor comparativo", "definicion": "Ubicar los riesgos en la matriz inherente y residual para mostrar el efecto del tratamiento."}
+          ],
+          "en_proyectos": "Use la tendencia de cada riesgo en Seguimiento y compare los mapas de calor inherente y residual en la Matriz.",
+          "ejemplo": "El KRI 'vulnerabilidades críticas sin parche mayores a 15 días' pasa de 3 a 0 en dos revisiones; el riesgo R-02 se mueve a estado monitoreo.",
+          "clausulas": ["9.1", "9.2", "9.3", "10.1"],
+          "controles": ["8.16", "8.8", "5.35"],
+          "preguntas": [
+            "¿Qué diferencia hay entre monitorear un riesgo y monitorear un control?",
+            "Proponga un KRI y su umbral para un riesgo de su matriz.",
+            "¿Cuándo un riesgo puede pasar a estado cerrado?"
+          ]
+        },
+        {
+          "id": "U2C5",
+          "titulo": "Análisis de impacto",
+          "resumen": "Determina cuánto afecta un riesgo a los objetivos. Puede ser cualitativo (escala 1 a 5), cuantitativo (en dinero o tiempo) o un análisis de impacto al negocio (BIA) para servicios críticos.",
+          "conceptos": [
+            {"termino": "Impacto en CID", "definicion": "Efecto sobre la confidencialidad, integridad o disponibilidad de la información."},
+            {"termino": "Valor monetario esperado (EMV)", "definicion": "EMV = probabilidad x impacto en dinero. Permite sumar riesgos y dimensionar reservas."},
+            {"termino": "SLE, ARO y ALE", "definicion": "Pérdida por evento (SLE), ocurrencias anuales (ARO) y pérdida anual esperada ALE = SLE x ARO."},
+            {"termino": "BIA", "definicion": "Análisis de impacto al negocio: identifica procesos críticos, su tiempo máximo tolerable de interrupción, RTO y RPO."},
+            {"termino": "RTO y RPO", "definicion": "Tiempo objetivo de recuperación del servicio y pérdida máxima de datos aceptable medida en tiempo."}
+          ],
+          "en_proyectos": "El impacto define la columna de la matriz y el orden de prioridad. Los controles 5.29 y 5.30 usan los resultados del BIA para la continuidad.",
+          "ejemplo": "Una caída del portal en la semana de matrícula cuesta 120 postulaciones por hora. Con 30% de probabilidad y 6 horas estimadas de interrupción, el EMV equivale a 216 postulaciones perdidas, lo que justifica la redundancia (8.14).",
+          "clausulas": ["6.1.2", "8.2"],
+          "controles": ["5.29", "5.30", "8.13", "8.14"],
+          "preguntas": [
+            "Calcule el ALE si un incidente cuesta 2.000.000 CLP y ocurre 3 veces al año.",
+            "¿Qué impacto pesa más en un sistema de notas: confidencialidad, integridad o disponibilidad? Justifique.",
+            "Defina RTO y RPO para el servicio principal de su proyecto."
+          ]
+        }
+      ]
+    }
+  ],
+
+  "escalas": {
+    "probabilidad": [
+      {"valor": 1, "nombre": "Rara", "criterio": "Menos de 10% de ocurrencia en la vida del proyecto; no hay antecedentes."},
+      {"valor": 2, "nombre": "Improbable", "criterio": "Entre 10% y 30%; ocurrió alguna vez en proyectos similares."},
+      {"valor": 3, "nombre": "Posible", "criterio": "Entre 30% y 50%; existen condiciones que lo favorecen."},
+      {"valor": 4, "nombre": "Probable", "criterio": "Entre 50% y 80%; ya hay señales o disparadores activos."},
+      {"valor": 5, "nombre": "Casi segura", "criterio": "Más de 80%; se espera que ocurra si no se actúa."}
+    ],
+    "impacto": [
+      {"valor": 1, "nombre": "Insignificante", "criterio": "Sin efecto en plazo ni costo; sin exposición de datos."},
+      {"valor": 2, "nombre": "Menor", "criterio": "Atraso menor a 1 semana o sobrecosto menor a 2%; datos internos sin sensibilidad."},
+      {"valor": 3, "nombre": "Moderado", "criterio": "Atraso de 1 a 3 semanas o sobrecosto de 2% a 5%; interrupción parcial del servicio."},
+      {"valor": 4, "nombre": "Mayor", "criterio": "Atraso de 3 a 6 semanas o sobrecosto de 5% a 10%; exposición de datos personales acotada."},
+      {"valor": 5, "nombre": "Catastrófico", "criterio": "Atraso mayor a 6 semanas o sobrecosto mayor a 10%; fuga masiva de datos, sanción legal o cancelación del proyecto."}
+    ],
+    "niveles": [
+      {"nombre": "Bajo", "min": 1, "max": 4, "accion": "Aceptar y monitorear en revisiones periódicas."},
+      {"nombre": "Medio", "min": 5, "max": 9, "accion": "Tratar si supera el apetito; asignar dueño y revisar cada ciclo."},
+      {"nombre": "Alto", "min": 10, "max": 14, "accion": "Tratamiento obligatorio con plan, plazos y controles del Anexo A."},
+      {"nombre": "Crítico", "min": 15, "max": 25, "accion": "Escalar al patrocinador; tratamiento inmediato o evitar la actividad."}
+    ],
+    "categorias": ["Técnico", "Gestión del proyecto", "Organizacional", "Externo / proveedores", "Personas", "Legal / regulatorio", "Físico / ambiental"],
+    "tratamientos": ["Mitigar", "Transferir", "Evitar", "Aceptar"],
+    "estados": ["Abierto", "En tratamiento", "Monitoreo", "Materializado", "Cerrado"],
+    "fases": ["Inicio", "Planificación", "Análisis y diseño", "Desarrollo", "Pruebas", "Despliegue", "Cierre"],
+    "tipos_desviacion": ["Ninguna", "Plazo", "Costo", "Alcance", "Calidad", "Seguridad de la información"],
+    "estados_implementacion": ["No iniciado", "En implementación", "Implementado", "No aplica"]
+  },
+
+  "clausulas": [
+    {"id": "4.1", "titulo": "Comprensión de la organización y de su contexto", "grupo": "Contexto", "pdca": "Planificar", "explicacion": "Identificar las cuestiones internas y externas que afectan la seguridad de la información, incluido el cambio climático desde la enmienda 2024.", "en_matriz": "Fuente de situaciones de incertidumbre externas e internas."},
+    {"id": "4.2", "titulo": "Necesidades y expectativas de las partes interesadas", "grupo": "Contexto", "pdca": "Planificar", "explicacion": "Determinar quiénes son las partes interesadas, qué requisitos tienen y cuáles se abordarán en el SGSI.", "en_matriz": "Origina riesgos legales y contractuales (por ejemplo, protección de datos personales)."},
+    {"id": "4.3", "titulo": "Alcance del SGSI", "grupo": "Contexto", "pdca": "Planificar", "explicacion": "Definir los límites del sistema de gestión, considerando interfaces y dependencias.", "en_matriz": "Delimita qué activos del proyecto entran en la evaluación."},
+    {"id": "4.4", "titulo": "Sistema de gestión de la seguridad de la información", "grupo": "Contexto", "pdca": "Planificar", "explicacion": "Establecer, implementar, mantener y mejorar el SGSI y sus procesos.", "en_matriz": "Marco general del proceso."},
+    {"id": "5.1", "titulo": "Liderazgo y compromiso", "grupo": "Liderazgo", "pdca": "Planificar", "explicacion": "La alta dirección asegura la política, los objetivos, los recursos y la integración de la seguridad en los procesos.", "en_matriz": "Aprueba el apetito de riesgo y los recursos de tratamiento."},
+    {"id": "5.2", "titulo": "Política", "grupo": "Liderazgo", "pdca": "Planificar", "explicacion": "Política de seguridad de la información documentada, comunicada y adecuada al propósito.", "en_matriz": "Referencia para definir criterios de aceptación."},
+    {"id": "5.3", "titulo": "Roles, responsabilidades y autoridades", "grupo": "Liderazgo", "pdca": "Planificar", "explicacion": "La dirección asigna y comunica responsabilidades y autoridades de seguridad.", "en_matriz": "Base del equipo de gestión de riesgo y de los dueños de riesgo."},
+    {"id": "6.1.1", "titulo": "Acciones para tratar riesgos y oportunidades: generalidades", "grupo": "Planificación", "pdca": "Planificar", "explicacion": "Considerar el contexto y las partes interesadas para determinar riesgos y oportunidades del propio SGSI.", "en_matriz": "Justifica el proceso de gestión de riesgos completo."},
+    {"id": "6.1.2", "titulo": "Evaluación de riesgos de seguridad de la información", "grupo": "Planificación", "pdca": "Planificar", "explicacion": "Definir y aplicar un proceso que: a) establezca criterios de aceptación y de evaluación; b) produzca resultados coherentes y comparables; c) identifique riesgos de pérdida de confidencialidad, integridad y disponibilidad, y a sus dueños; d) analice consecuencias y probabilidad; e) evalúe y priorice los riesgos.", "en_matriz": "Columnas de activo, amenaza, vulnerabilidad, CID, dueño, probabilidad, impacto y nivel.", "requisitos": ["a) criterios de aceptación y de evaluación", "b) resultados coherentes, válidos y comparables", "c1) riesgos de pérdida de C, I y D", "c2) dueños de los riesgos", "d) consecuencias, probabilidad y nivel", "e) comparación con criterios y priorización"]},
+    {"id": "6.1.3", "titulo": "Tratamiento de riesgos de seguridad de la información", "grupo": "Planificación", "pdca": "Planificar", "explicacion": "Seleccionar opciones de tratamiento, determinar los controles necesarios, compararlos con el Anexo A, elaborar la Declaración de Aplicabilidad, formular el plan de tratamiento y obtener la aprobación de los dueños del riesgo y la aceptación del riesgo residual.", "en_matriz": "Columnas de tratamiento, controles del Anexo A, plan, residual y aprobación del dueño.", "requisitos": ["a) seleccionar opciones de tratamiento", "b) determinar los controles necesarios", "c) comparar con el Anexo A", "d) Declaración de Aplicabilidad", "e) plan de tratamiento", "f) aprobación del dueño y aceptación del residual"]},
+    {"id": "6.2", "titulo": "Objetivos de seguridad de la información", "grupo": "Planificación", "pdca": "Planificar", "explicacion": "Objetivos medibles, coherentes con la política y que consideren los resultados de la evaluación de riesgos.", "en_matriz": "Los KRI y metas de nivel residual se derivan de estos objetivos."},
+    {"id": "6.3", "titulo": "Planificación de los cambios", "grupo": "Planificación", "pdca": "Planificar", "explicacion": "Los cambios al SGSI se realizan de manera planificada (requisito agregado en la versión 2022).", "en_matriz": "Cambios de alcance o de tecnología gatillan revisión de riesgos."},
+    {"id": "7.1", "titulo": "Recursos", "grupo": "Apoyo", "pdca": "Planificar", "explicacion": "Proveer los recursos necesarios para el SGSI.", "en_matriz": "Reserva de contingencia y presupuesto de tratamiento."},
+    {"id": "7.2", "titulo": "Competencia", "grupo": "Apoyo", "pdca": "Planificar", "explicacion": "Asegurar que las personas sean competentes y conservar evidencia.", "en_matriz": "Riesgos de personas por falta de competencias."},
+    {"id": "7.3", "titulo": "Concienciación", "grupo": "Apoyo", "pdca": "Planificar", "explicacion": "Las personas conocen la política, su contribución y las consecuencias de no cumplir.", "en_matriz": "Relacionado con el control 6.3."},
+    {"id": "7.4", "titulo": "Comunicación", "grupo": "Apoyo", "pdca": "Planificar", "explicacion": "Definir qué, cuándo, a quién y cómo comunicar.", "en_matriz": "Informes de riesgos a interesados."},
+    {"id": "7.5", "titulo": "Información documentada", "grupo": "Apoyo", "pdca": "Planificar", "explicacion": "Crear, actualizar y controlar la información documentada requerida.", "en_matriz": "La matriz, la SoA, el plan y el registro de revisiones son información documentada controlada."},
+    {"id": "8.1", "titulo": "Planificación y control operacional", "grupo": "Operación", "pdca": "Hacer", "explicacion": "Planificar, implementar y controlar los procesos necesarios, incluidos los servicios externos.", "en_matriz": "Ejecución del plan de tratamiento."},
+    {"id": "8.2", "titulo": "Evaluación de riesgos de seguridad de la información", "grupo": "Operación", "pdca": "Hacer", "explicacion": "Realizar evaluaciones a intervalos planificados o ante cambios significativos y conservar los resultados.", "en_matriz": "Fechas de próxima revisión y registro de revisiones."},
+    {"id": "8.3", "titulo": "Tratamiento de riesgos de seguridad de la información", "grupo": "Operación", "pdca": "Hacer", "explicacion": "Implementar el plan de tratamiento y conservar los resultados.", "en_matriz": "Estado del riesgo y estado de implementación de controles en la SoA."},
+    {"id": "9.1", "titulo": "Seguimiento, medición, análisis y evaluación", "grupo": "Evaluación del desempeño", "pdca": "Verificar", "explicacion": "Determinar qué medir, cómo, cuándo, quién y cómo analizar los resultados.", "en_matriz": "Tendencias y KRI del módulo de seguimiento."},
+    {"id": "9.2", "titulo": "Auditoría interna", "grupo": "Evaluación del desempeño", "pdca": "Verificar", "explicacion": "Auditorías planificadas para verificar conformidad y eficacia.", "en_matriz": "Auditoría del proceso de riesgos del proyecto."},
+    {"id": "9.3", "titulo": "Revisión por la dirección", "grupo": "Evaluación del desempeño", "pdca": "Verificar", "explicacion": "La dirección revisa el SGSI, incluyendo los resultados de la evaluación de riesgos y el estado del plan de tratamiento.", "en_matriz": "Informe de conciliación y mapa de calor para la dirección."},
+    {"id": "10.1", "titulo": "Mejora continua", "grupo": "Mejora", "pdca": "Actuar", "explicacion": "Mejorar de forma continua la idoneidad, adecuación y eficacia del SGSI.", "en_matriz": "Lecciones aprendidas que actualizan listas de verificación."},
+    {"id": "10.2", "titulo": "No conformidad y acción correctiva", "grupo": "Mejora", "pdca": "Actuar", "explicacion": "Reaccionar ante no conformidades, analizar causas, implementar acciones y revisar su eficacia.", "en_matriz": "Desviaciones registradas en las revisiones."}
+  ],
+
+  "temas": [
+    {"id": "5", "nombre": "Controles organizacionales", "total": 37},
+    {"id": "6", "nombre": "Controles de personas", "total": 8},
+    {"id": "7", "nombre": "Controles físicos", "total": 14},
+    {"id": "8", "nombre": "Controles tecnológicos", "total": 34}
+  ],
+
+  "controles": [
+    {"id": "5.1", "titulo": "Políticas de seguridad de la información", "descripcion": "Definir, aprobar, publicar y revisar una política general y políticas específicas por tema.", "claves": ["política", "politica", "directriz", "lineamiento", "gobierno"]},
+    {"id": "5.2", "titulo": "Roles y responsabilidades de seguridad de la información", "descripcion": "Asignar responsabilidades de seguridad según las necesidades de la organización.", "claves": ["rol", "responsable", "responsabilidad", "dueño", "raci"]},
+    {"id": "5.3", "titulo": "Segregación de funciones", "descripcion": "Separar funciones incompatibles para reducir fraude, error o abuso.", "claves": ["segregación", "segregacion", "conflicto de interés", "aprobación propia", "fraude"]},
+    {"id": "5.4", "titulo": "Responsabilidades de la dirección", "descripcion": "La dirección exige a todo el personal aplicar la seguridad según las políticas.", "claves": ["dirección", "direccion", "gerencia", "patrocinador", "compromiso"]},
+    {"id": "5.5", "titulo": "Contacto con las autoridades", "descripcion": "Mantener contacto con autoridades pertinentes (por ejemplo, CSIRT nacional, policía, regulador).", "claves": ["autoridad", "csirt", "regulador", "denuncia", "policía"]},
+    {"id": "5.6", "titulo": "Contacto con grupos de interés especial", "descripcion": "Participar en foros, asociaciones y comunidades de seguridad.", "claves": ["comunidad", "foro", "asociación", "grupo de interés"]},
+    {"id": "5.7", "titulo": "Inteligencia de amenazas", "descripcion": "Recopilar y analizar información sobre amenazas para anticipar ataques.", "claves": ["amenaza", "inteligencia", "ioc", "campaña", "ransomware", "tendencias de ataque"], "nuevo2022": true},
+    {"id": "5.8", "titulo": "Seguridad de la información en la gestión de proyectos", "descripcion": "Integrar la seguridad en la gestión de todo proyecto, desde el inicio hasta el cierre.", "claves": ["proyecto", "gestión de proyectos", "cronograma", "plazo", "alcance", "requisitos del proyecto", "hito"]},
+    {"id": "5.9", "titulo": "Inventario de información y otros activos asociados", "descripcion": "Mantener un inventario de activos con su propietario.", "claves": ["inventario", "activo", "cmdb", "propietario del activo"]},
+    {"id": "5.10", "titulo": "Uso aceptable de la información y otros activos asociados", "descripcion": "Reglas documentadas para el uso aceptable de información y activos.", "claves": ["uso aceptable", "uso indebido", "reglas de uso"]},
+    {"id": "5.11", "titulo": "Devolución de activos", "descripcion": "Devolver los activos de la organización al término del vínculo o contrato.", "claves": ["devolución", "término de contrato", "notebook asignado"]},
+    {"id": "5.12", "titulo": "Clasificación de la información", "descripcion": "Clasificar la información según su confidencialidad, integridad, disponibilidad y requisitos.", "claves": ["clasificación", "clasificacion", "confidencial", "sensible", "reservado"]},
+    {"id": "5.13", "titulo": "Etiquetado de la información", "descripcion": "Etiquetar la información según el esquema de clasificación.", "claves": ["etiqueta", "etiquetado", "marca de agua"]},
+    {"id": "5.14", "titulo": "Transferencia de información", "descripcion": "Reglas y acuerdos para transferir información por cualquier medio.", "claves": ["transferencia", "envío", "correo", "intercambio de datos", "sftp", "api externa"]},
+    {"id": "5.15", "titulo": "Control de acceso", "descripcion": "Reglas de acceso físico y lógico basadas en requisitos del negocio y de seguridad.", "claves": ["acceso", "permiso", "autorización", "mínimo privilegio", "rbac"]},
+    {"id": "5.16", "titulo": "Gestión de identidades", "descripcion": "Gestionar el ciclo de vida completo de las identidades.", "claves": ["identidad", "cuenta de usuario", "alta y baja", "cuentas huérfanas", "ldap", "directorio activo"]},
+    {"id": "5.17", "titulo": "Información de autenticación", "descripcion": "Controlar la asignación y gestión de contraseñas y otros secretos de autenticación.", "claves": ["contraseña", "password", "credencial", "secreto", "clave débil"]},
+    {"id": "5.18", "titulo": "Derechos de acceso", "descripcion": "Otorgar, revisar, modificar y retirar derechos de acceso según la política.", "claves": ["derechos de acceso", "revisión de accesos", "recertificación", "privilegios acumulados"]},
+    {"id": "5.19", "titulo": "Seguridad de la información en las relaciones con proveedores", "descripcion": "Gestionar los riesgos asociados al uso de productos o servicios de proveedores.", "claves": ["proveedor", "tercero", "outsourcing", "contratista"]},
+    {"id": "5.20", "titulo": "Tratamiento de la seguridad en los acuerdos con proveedores", "descripcion": "Establecer requisitos de seguridad en los contratos con cada proveedor.", "claves": ["contrato", "acuerdo", "sla", "cláusula de seguridad"]},
+    {"id": "5.21", "titulo": "Gestión de la seguridad en la cadena de suministro TIC", "descripcion": "Gestionar riesgos de la cadena de suministro de productos y servicios TIC.", "claves": ["cadena de suministro", "librería", "dependencia", "paquete npm", "supply chain", "componente de terceros"]},
+    {"id": "5.22", "titulo": "Seguimiento, revisión y gestión de cambios de servicios de proveedores", "descripcion": "Monitorear y revisar el desempeño y los cambios de los servicios contratados.", "claves": ["desempeño del proveedor", "cambio del proveedor", "revisión de proveedor", "incumplimiento de sla"]},
+    {"id": "5.23", "titulo": "Seguridad de la información para el uso de servicios en la nube", "descripcion": "Procesos para adquirir, usar, gestionar y abandonar servicios en la nube.", "claves": ["nube", "cloud", "aws", "azure", "saas", "iaas", "bucket"], "nuevo2022": true},
+    {"id": "5.24", "titulo": "Planificación y preparación de la gestión de incidentes", "descripcion": "Definir procesos, roles y responsabilidades para gestionar incidentes.", "claves": ["incidente", "plan de respuesta", "csirt interno"]},
+    {"id": "5.25", "titulo": "Evaluación y decisión sobre eventos de seguridad", "descripcion": "Evaluar los eventos y decidir si se clasifican como incidentes.", "claves": ["evento", "triage", "clasificación de incidentes"]},
+    {"id": "5.26", "titulo": "Respuesta a incidentes de seguridad de la información", "descripcion": "Responder a los incidentes según procedimientos documentados.", "claves": ["respuesta", "contención", "erradicación", "brecha", "ataque"]},
+    {"id": "5.27", "titulo": "Aprendizaje de los incidentes de seguridad", "descripcion": "Usar el conocimiento de incidentes para reforzar los controles.", "claves": ["lecciones aprendidas", "post mortem", "causa raíz"]},
+    {"id": "5.28", "titulo": "Recopilación de evidencias", "descripcion": "Identificar, recolectar, adquirir y preservar evidencia de eventos de seguridad.", "claves": ["evidencia", "forense", "cadena de custodia"]},
+    {"id": "5.29", "titulo": "Seguridad de la información durante una interrupción", "descripcion": "Mantener la seguridad en un nivel adecuado durante interrupciones.", "claves": ["interrupción", "contingencia", "crisis", "modo degradado"]},
+    {"id": "5.30", "titulo": "Preparación de las TIC para la continuidad del negocio", "descripcion": "Planificar, implementar, mantener y probar la preparación de las TIC según los objetivos de continuidad.", "claves": ["continuidad", "bia", "rto", "rpo", "drp", "recuperación ante desastres", "caída", "indisponibilidad"], "nuevo2022": true},
+    {"id": "5.31", "titulo": "Requisitos legales, estatutarios, reglamentarios y contractuales", "descripcion": "Identificar y cumplir los requisitos legales y contractuales aplicables (por ejemplo, Ley 21.663 marco de ciberseguridad en Chile).", "claves": ["ley", "legal", "normativa", "regulación", "cumplimiento legal", "contractual"]},
+    {"id": "5.32", "titulo": "Derechos de propiedad intelectual", "descripcion": "Proteger la propiedad intelectual y respetar licencias de software.", "claves": ["licencia", "propiedad intelectual", "software pirata", "copyright", "open source"]},
+    {"id": "5.33", "titulo": "Protección de los registros", "descripcion": "Proteger registros contra pérdida, destrucción, falsificación y acceso no autorizado.", "claves": ["registro", "acta", "retención", "archivo"]},
+    {"id": "5.34", "titulo": "Privacidad y protección de datos personales (PII)", "descripcion": "Cumplir los requisitos de privacidad y protección de datos personales (en Chile, Ley 21.719).", "claves": ["datos personales", "privacidad", "pii", "rut", "postulante", "ley 21.719", "protección de datos"]},
+    {"id": "5.35", "titulo": "Revisión independiente de la seguridad de la información", "descripcion": "Revisar de forma independiente el enfoque de seguridad a intervalos planificados o ante cambios.", "claves": ["auditoría", "revisión independiente", "auditor externo"]},
+    {"id": "5.36", "titulo": "Cumplimiento de políticas, reglas y normas de seguridad", "descripcion": "Revisar regularmente que se cumplan las políticas y normas.", "claves": ["cumplimiento", "verificación de políticas", "control interno"]},
+    {"id": "5.37", "titulo": "Procedimientos operativos documentados", "descripcion": "Documentar los procedimientos de operación y ponerlos a disposición del personal.", "claves": ["procedimiento", "manual", "runbook", "documentación operativa"]},
+
+    {"id": "6.1", "titulo": "Investigación de antecedentes", "descripcion": "Verificar antecedentes de los candidatos antes de su incorporación, según ley y riesgo.", "claves": ["antecedentes", "selección de personal", "contratación"]},
+    {"id": "6.2", "titulo": "Términos y condiciones del empleo", "descripcion": "Incluir en los contratos las responsabilidades de seguridad de las partes.", "claves": ["contrato de trabajo", "condiciones de empleo"]},
+    {"id": "6.3", "titulo": "Concienciación, educación y formación en seguridad", "descripcion": "Capacitar y concienciar al personal de forma periódica.", "claves": ["capacitación", "formación", "concienciación", "phishing", "ingeniería social", "falta de competencias", "curva de aprendizaje"]},
+    {"id": "6.4", "titulo": "Proceso disciplinario", "descripcion": "Proceso formal y comunicado para quienes violen la política de seguridad.", "claves": ["disciplinario", "sanción interna"]},
+    {"id": "6.5", "titulo": "Responsabilidades tras el cese o cambio de empleo", "descripcion": "Definir obligaciones de seguridad que se mantienen después del cese o cambio.", "claves": ["cese", "renuncia", "desvinculación", "rotación de personal"]},
+    {"id": "6.6", "titulo": "Acuerdos de confidencialidad o no divulgación", "descripcion": "Firmar acuerdos de confidencialidad que reflejen las necesidades de protección.", "claves": ["nda", "confidencialidad", "no divulgación"]},
+    {"id": "6.7", "titulo": "Trabajo en remoto", "descripcion": "Medidas de seguridad para el personal que trabaja fuera de las instalaciones.", "claves": ["remoto", "teletrabajo", "vpn", "home office"]},
+    {"id": "6.8", "titulo": "Notificación de eventos de seguridad de la información", "descripcion": "Canal para que el personal informe eventos de seguridad a tiempo.", "claves": ["reporte", "notificación", "canal de denuncia", "informar evento"]},
+
+    {"id": "7.1", "titulo": "Perímetros de seguridad física", "descripcion": "Definir perímetros para proteger áreas con información y activos.", "claves": ["perímetro", "cerco", "sala de servidores"]},
+    {"id": "7.2", "titulo": "Controles físicos de entrada", "descripcion": "Proteger las áreas seguras con controles de entrada y puntos de acceso.", "claves": ["entrada", "tarjeta de acceso", "biométrico", "visitas"]},
+    {"id": "7.3", "titulo": "Seguridad de oficinas, despachos e instalaciones", "descripcion": "Diseñar e implementar seguridad física en oficinas e instalaciones.", "claves": ["oficina", "instalación", "dependencias"]},
+    {"id": "7.4", "titulo": "Monitorización de la seguridad física", "descripcion": "Vigilar continuamente las instalaciones para detectar accesos no autorizados.", "claves": ["cctv", "cámara", "vigilancia", "alarma"], "nuevo2022": true},
+    {"id": "7.5", "titulo": "Protección contra amenazas físicas y ambientales", "descripcion": "Proteger contra desastres naturales, incendios, inundaciones y otras amenazas físicas.", "claves": ["incendio", "inundación", "terremoto", "sismo", "desastre natural", "clima"]},
+    {"id": "7.6", "titulo": "Trabajo en áreas seguras", "descripcion": "Medidas de seguridad para trabajar dentro de áreas seguras.", "claves": ["área segura", "data center", "datacenter"]},
+    {"id": "7.7", "titulo": "Puesto de trabajo despejado y pantalla limpia", "descripcion": "Reglas de escritorio limpio y bloqueo de pantalla.", "claves": ["escritorio limpio", "pantalla", "bloqueo de sesión", "papeles"]},
+    {"id": "7.8", "titulo": "Emplazamiento y protección de equipos", "descripcion": "Ubicar y proteger los equipos de forma segura.", "claves": ["ubicación de equipos", "rack", "protección de equipos"]},
+    {"id": "7.9", "titulo": "Seguridad de los activos fuera de las instalaciones", "descripcion": "Proteger los activos que se usan fuera del recinto.", "claves": ["fuera de las instalaciones", "notebook en terreno", "robo de equipo"]},
+    {"id": "7.10", "titulo": "Soportes de almacenamiento", "descripcion": "Gestionar los medios de almacenamiento durante todo su ciclo de vida.", "claves": ["pendrive", "usb", "disco externo", "medio removible"]},
+    {"id": "7.11", "titulo": "Servicios de suministro", "descripcion": "Proteger los equipos ante fallas de energía y otros suministros.", "claves": ["energía", "corte de luz", "ups", "generador", "climatización"]},
+    {"id": "7.12", "titulo": "Seguridad del cableado", "descripcion": "Proteger el cableado de energía y datos contra interceptación o daño.", "claves": ["cableado", "cable", "patch panel"]},
+    {"id": "7.13", "titulo": "Mantenimiento de los equipos", "descripcion": "Mantener correctamente los equipos para asegurar su disponibilidad e integridad.", "claves": ["mantenimiento", "falla de hardware", "obsolescencia"]},
+    {"id": "7.14", "titulo": "Eliminación o reutilización segura de equipos", "descripcion": "Verificar que los equipos no contengan datos sensibles antes de eliminarlos o reutilizarlos.", "claves": ["eliminación de equipos", "borrado seguro", "reutilización", "dar de baja"]},
+
+    {"id": "8.1", "titulo": "Dispositivos finales de usuario", "descripcion": "Proteger la información almacenada, procesada o accesible desde dispositivos de usuario.", "claves": ["dispositivo", "endpoint", "notebook", "celular", "byod"]},
+    {"id": "8.2", "titulo": "Derechos de acceso privilegiado", "descripcion": "Restringir y gestionar la asignación de privilegios administrativos.", "claves": ["administrador", "root", "privilegiado", "superusuario", "pam"]},
+    {"id": "8.3", "titulo": "Restricción del acceso a la información", "descripcion": "Restringir el acceso a la información según la política de control de acceso.", "claves": ["restricción de acceso", "acceso no autorizado", "idor", "autorización por recurso"]},
+    {"id": "8.4", "titulo": "Acceso al código fuente", "descripcion": "Gestionar adecuadamente el acceso de lectura y escritura al código fuente y herramientas.", "claves": ["código fuente", "repositorio", "git", "github", "gitlab"]},
+    {"id": "8.5", "titulo": "Autenticación segura", "descripcion": "Implementar tecnologías y procedimientos de autenticación segura.", "claves": ["autenticación", "login", "mfa", "doble factor", "2fa", "sesión", "sso"]},
+    {"id": "8.6", "titulo": "Gestión de la capacidad", "descripcion": "Monitorear y ajustar el uso de recursos según la capacidad requerida.", "claves": ["capacidad", "carga", "rendimiento", "saturación", "usuarios simultáneos", "escalabilidad"]},
+    {"id": "8.7", "titulo": "Protección contra el malware", "descripcion": "Protección contra malware apoyada en la concienciación de los usuarios.", "claves": ["malware", "virus", "ransomware", "antivirus", "edr"]},
+    {"id": "8.8", "titulo": "Gestión de las vulnerabilidades técnicas", "descripcion": "Obtener información de vulnerabilidades, evaluar la exposición y aplicar medidas.", "claves": ["vulnerabilidad", "parche", "cve", "actualización", "escaneo", "pentest", "sin parches"]},
+    {"id": "8.9", "titulo": "Gestión de la configuración", "descripcion": "Establecer, documentar, implementar y revisar configuraciones seguras de hardware, software y redes.", "claves": ["configuración", "hardening", "configuración por defecto", "baseline", "infraestructura como código"], "nuevo2022": true},
+    {"id": "8.10", "titulo": "Eliminación de la información", "descripcion": "Eliminar la información cuando ya no se requiere.", "claves": ["eliminación de datos", "borrado", "retención de datos"], "nuevo2022": true},
+    {"id": "8.11", "titulo": "Enmascaramiento de datos", "descripcion": "Enmascarar datos según la política de control de acceso y requisitos legales.", "claves": ["enmascaramiento", "anonimización", "seudonimización", "ofuscación"], "nuevo2022": true},
+    {"id": "8.12", "titulo": "Prevención de fugas de datos", "descripcion": "Aplicar medidas de prevención de fuga de datos en sistemas, redes y dispositivos.", "claves": ["fuga", "filtración", "dlp", "exfiltración"], "nuevo2022": true},
+    {"id": "8.13", "titulo": "Copias de seguridad de la información", "descripcion": "Mantener y probar respaldos de información, software y sistemas.", "claves": ["respaldo", "backup", "copia de seguridad", "restauración", "pérdida de datos"]},
+    {"id": "8.14", "titulo": "Redundancia de las instalaciones de procesamiento", "descripcion": "Implementar redundancia suficiente para cumplir los requisitos de disponibilidad.", "claves": ["redundancia", "alta disponibilidad", "failover", "cluster", "balanceador"]},
+    {"id": "8.15", "titulo": "Registro de eventos (logs)", "descripcion": "Generar, almacenar, proteger y analizar registros de actividades y eventos.", "claves": ["log", "registro de eventos", "bitácora", "auditoría de eventos", "trazabilidad"]},
+    {"id": "8.16", "titulo": "Actividades de monitorización", "descripcion": "Monitorear redes, sistemas y aplicaciones para detectar comportamientos anómalos.", "claves": ["monitoreo", "monitorización", "siem", "alerta", "anomalía", "soc"], "nuevo2022": true},
+    {"id": "8.17", "titulo": "Sincronización de relojes", "descripcion": "Sincronizar los relojes de los sistemas con fuentes de tiempo aprobadas.", "claves": ["reloj", "ntp", "hora", "sincronización"]},
+    {"id": "8.18", "titulo": "Uso de programas utilitarios privilegiados", "descripcion": "Restringir y controlar utilitarios capaces de eludir controles.", "claves": ["utilitario", "herramienta administrativa", "psexec"]},
+    {"id": "8.19", "titulo": "Instalación de software en sistemas en producción", "descripcion": "Gestionar de forma segura la instalación de software en sistemas operativos.", "claves": ["instalación de software", "software no autorizado", "producción"]},
+    {"id": "8.20", "titulo": "Seguridad de las redes", "descripcion": "Asegurar, gestionar y controlar las redes y sus dispositivos.", "claves": ["red", "firewall", "router", "switch", "wifi"]},
+    {"id": "8.21", "titulo": "Seguridad de los servicios de red", "descripcion": "Identificar e implementar mecanismos de seguridad y niveles de servicio de red.", "claves": ["servicio de red", "isp", "enlace", "dns", "proveedor de internet"]},
+    {"id": "8.22", "titulo": "Segregación de redes", "descripcion": "Separar grupos de servicios, usuarios y sistemas en redes distintas.", "claves": ["segmentación", "vlan", "dmz", "segregación de redes"]},
+    {"id": "8.23", "titulo": "Filtrado web", "descripcion": "Gestionar el acceso a sitios web externos para reducir la exposición a contenido malicioso.", "claves": ["filtrado web", "proxy", "navegación", "sitios maliciosos"], "nuevo2022": true},
+    {"id": "8.24", "titulo": "Uso de la criptografía", "descripcion": "Reglas para el uso eficaz de la criptografía y la gestión de claves.", "claves": ["cifrado", "criptografía", "tls", "https", "certificado", "llave", "texto plano"]},
+    {"id": "8.25", "titulo": "Ciclo de vida de desarrollo seguro", "descripcion": "Establecer reglas para el desarrollo seguro de software y sistemas.", "claves": ["sdlc", "desarrollo seguro", "devsecops", "ciclo de vida"]},
+    {"id": "8.26", "titulo": "Requisitos de seguridad de las aplicaciones", "descripcion": "Identificar, especificar y aprobar requisitos de seguridad al desarrollar o adquirir aplicaciones.", "claves": ["requisito de seguridad", "aplicación", "api", "web", "app", "historia de usuario"]},
+    {"id": "8.27", "titulo": "Arquitectura de sistemas y principios de ingeniería seguros", "descripcion": "Establecer y aplicar principios de ingeniería segura en el diseño de sistemas.", "claves": ["arquitectura", "diseño seguro", "defensa en profundidad", "zero trust", "modelado de amenazas"]},
+    {"id": "8.28", "titulo": "Codificación segura", "descripcion": "Aplicar principios de codificación segura en el desarrollo de software.", "claves": ["codificación", "código", "inyección", "sql", "sql injection", "xss", "owasp", "validación de entradas"], "nuevo2022": true},
+    {"id": "8.29", "titulo": "Pruebas de seguridad en desarrollo y aceptación", "descripcion": "Definir e implementar pruebas de seguridad en el ciclo de desarrollo.", "claves": ["prueba de seguridad", "sast", "dast", "testing", "qa", "aceptación"]},
+    {"id": "8.30", "titulo": "Desarrollo externalizado", "descripcion": "Dirigir, supervisar y revisar el desarrollo de sistemas externalizado.", "claves": ["desarrollo externo", "software factory", "externalizado", "freelance"]},
+    {"id": "8.31", "titulo": "Separación de entornos de desarrollo, prueba y producción", "descripcion": "Separar y proteger los entornos de desarrollo, prueba y producción.", "claves": ["entorno", "ambiente", "desarrollo y producción", "staging", "qa"]},
+    {"id": "8.32", "titulo": "Gestión de cambios", "descripcion": "Someter los cambios en instalaciones y sistemas a procedimientos de gestión de cambios.", "claves": ["cambio", "control de cambios", "despliegue", "pase a producción", "versión", "cambio de alcance"]},
+    {"id": "8.33", "titulo": "Información de prueba", "descripcion": "Seleccionar, proteger y gestionar adecuadamente los datos de prueba.", "claves": ["datos de prueba", "datos reales en pruebas", "dataset de prueba"]},
+    {"id": "8.34", "titulo": "Protección de los sistemas durante las pruebas de auditoría", "descripcion": "Planificar las pruebas de auditoría para minimizar su efecto en sistemas operativos.", "claves": ["prueba de auditoría", "auditoría técnica", "impacto de auditoría"]}
+  ]
+}
